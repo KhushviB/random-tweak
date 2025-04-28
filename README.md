@@ -40,7 +40,7 @@ RandomTweak is a full-stack project where:
 2. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/randomtweak.git
+    git clone https://github.com/KhushviB/randomtweak.git
     cd randomtweak
     ```
 
