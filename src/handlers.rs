@@ -4,7 +4,7 @@ use crate::models::TemplateRecord;
 
 use std::sync::{Arc, Mutex};
 
-#[derive(Clone)]=
+#[derive(Clone)]
 pub struct AppState {
     pub templates: Arc<Mutex<Vec<TemplateRecord>>>, 
 }
