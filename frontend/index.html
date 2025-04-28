@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandomTweak - Template Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --light: #f9fafb;
+            --dark: #1f2937;
+            --gray: #9ca3af;
+            --gray-light: #f3f4f6;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e7fdff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .selectors {
+            margin-bottom: 25px;
+        }
+
+        .select-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .select-wrapper::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            pointer-events: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: var(--light);
+            font-size: 16px;
+            color: var(--dark);
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        select:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .template-box {
+            padding: 25px;
+            background: var(--gray-light);
+            border-radius: 12px;
+            min-height: 120px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-box::before {
+            content: '\f036';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--gray);
+            opacity: 0.3;
+            font-size: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #e5e7eb;
+            color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .subcategory-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 8px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">RandomTweak</div>
+        
+        <div class="selectors">
+            <div class="select-wrapper">
+                <select id="categorySelect">
+                    <option selected disabled>Loading categories...</option>
+                </select>
+            </div>
+            
+            <div class="select-wrapper">
+                <select id="subcategorySelect" disabled>
+                    <option selected disabled>Select category first</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="tags"></div>
+        
+        <div class="template-box" id="templateBox">
+            Please select a category and subcategory to generate a template.
+        </div>
+        
+        <div class="buttons">
+            <button id="regenerateBtn" class="btn btn-primary" disabled>
+                <i class="fas fa-random"></i> Random Generate
+            </button>
+            
+        </div>
+    </div>
+
+    <script>
+        const backendUrl = "http://127.0.0.1:8080";
+        const categorySelect = document.getElementById('categorySelect');
+        const subcategorySelect = document.getElementById('subcategorySelect');
+        const templateBox = document.getElementById('templateBox');
+        const regenerateBtn = document.getElementById('regenerateBtn');
+        
+
+        async function loadCategories() {
+            try {
+                const res = await fetch(`${backendUrl}/categories`);
+                const categories = await res.json();
+                categorySelect.innerHTML = `<option selected disabled>Select Category</option>`;
+                categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categorySelect.appendChild(option);
+                });
+            } catch {
+                categorySelect.innerHTML = `<option selected disabled>Failed to load categories. Please refresh.</option>`;
+            }
+        }
+
+        async function loadSubcategories(category) {
+            try {
+                const res = await fetch(`${backendUrl}/subcategories/${encodeURIComponent(category)}`);
+                const subcategories = await res.json();
+                subcategorySelect.innerHTML = `<option selected disabled>Select Subcategory</option>`;
+                subcategories.forEach(sub => {
+                    const option = document.createElement('option');
+                    option.value = sub;
+                    option.textContent = sub;
+                    subcategorySelect.appendChild(option);
+                });
+                subcategorySelect.disabled = false;
+            } catch {
+                subcategorySelect.innerHTML = `<option selected disabled>Failed to load subcategories</option>`;
+            }
+        }
+
+        async function loadTemplate(category, subcategory) {
+            try {
+                const res = await fetch(`${backendUrl}/template/${encodeURIComponent(category)}/${encodeURIComponent(subcategory)}`);
+                const template = await res.json();
+                templateBox.textContent = template;
+                regenerateBtn.disabled = false;
+            } catch {
+                templateBox.textContent = "Error loading template.";
+                regenerateBtn.disabled = true;
+            }
+        }
+        
+
+
+        categorySelect.addEventListener('change', () => {
+            const category = categorySelect.value;
+            loadSubcategories(category);
+        });
+
+        subcategorySelect.addEventListener('change', () => {
+            const category = categorySelect.value;
+            const subcategory = subcategorySelect.value;
+            loadTemplate(category, subcategory);
+        });
+
+        regenerateBtn.addEventListener('click', () => {
+            const category = categorySelect.value;
+            const subcategory = subcategorySelect.value;
+            loadTemplate(category, subcategory);
+        });
+
+
+        document.addEventListener("DOMContentLoaded", loadCategories);
+    </script>
+</body>
+</html>
