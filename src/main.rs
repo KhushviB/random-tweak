@@ -43,7 +43,7 @@ async fn main() -> std::io::Result<()> {
         .service(Files::new("/", "frontend").index_file("index.html"))
 })
 
-    .bind(("0.0.0.0", port))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }
