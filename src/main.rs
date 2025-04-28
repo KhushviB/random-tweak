@@ -25,7 +25,7 @@ fn load_templates(file_path: &str) -> Vec<TemplateRecord> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let templates = load_templates("https://github.com/KhushviB/random-tweak/blob/main/output_templates.csv");
+    let templates = load_templates("output_templates.csv");
     let app_state = AppState {
         templates: Arc::new(Mutex::new(templates)),
     };
