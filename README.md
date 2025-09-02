@@ -1,11 +1,11 @@
-# 🌟 RandomTweak - Rust-powered Template Generator
+# RandomTweak - Rust-powered Template Generator
 
 Welcome to **RandomTweak**!  
 A simple, fun project built in **Rust** to generate random templates based on selected categories and subcategories — perfect for beginners exploring Rust Web Development 🚀.
 
 ---
 
-## 📚 About This Project
+## About This Project
 
 RandomTweak is a full-stack project where:
 
@@ -18,7 +18,7 @@ RandomTweak is a full-stack project where:
 
 ---
 
-## 🔥 Features
+## Features 🔥
 
 - Fetch random templates based on selected **Category** and **Subcategory**.
 - **Fast** and **lightweight** — Rust style.
@@ -27,7 +27,7 @@ RandomTweak is a full-stack project where:
 
 ---
 
-## 🛠️ How to Run Locally
+## How to Run Locally 🛠️
 
 > No complex setup — just Rust love ❤️.
 
@@ -56,11 +56,11 @@ RandomTweak is a full-stack project where:
     http://127.0.0.1:8080
     ```
 
-    ✅ Your RandomTweak app is ready!
+   Your RandomTweak app is ready! ✅
 
 ---
 
-## 💬 Why Rust for Web?
+## Why Rust for Web? 💬
 
 Because Rust gives you:
 
@@ -70,7 +70,7 @@ Because Rust gives you:
 - Big fun for new learners ✨
 ---
 
-## ❤️ Special Thanks
+## Special Thanks ❤️
 
 - [Rust Lang](https://www.rust-lang.org/)
 - [Actix Web](https://actix.rs/)
